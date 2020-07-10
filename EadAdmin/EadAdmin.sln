@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EadAdmin.Test", "test\EadAdmin.Test\EadAdmin.Test.csproj", "{2673E6D7-2EB0-40EB-AC1E-38E37ED9F576}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EadAdmin", "src\EadAdmin\EadAdmin.csproj", "{D8874F45-57B8-40CD-A417-E0E52A8E3365}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{992307E2-0D1D-4C26-8DA8-0778C6F233F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{2673E6D7-2EB0-40EB-AC1E-38E37ED9F576}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2673E6D7-2EB0-40EB-AC1E-38E37ED9F576}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2673E6D7-2EB0-40EB-AC1E-38E37ED9F576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8874F45-57B8-40CD-A417-E0E52A8E3365}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8874F45-57B8-40CD-A417-E0E52A8E3365}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8874F45-57B8-40CD-A417-E0E52A8E3365}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8874F45-57B8-40CD-A417-E0E52A8E3365}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2673E6D7-2EB0-40EB-AC1E-38E37ED9F576} = {992307E2-0D1D-4C26-8DA8-0778C6F233F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA87B45F-E42A-4ED6-A62D-A23305A02751}
