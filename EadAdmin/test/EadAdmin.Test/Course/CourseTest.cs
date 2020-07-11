@@ -1,4 +1,5 @@
-﻿using ExpectedObjects;
+﻿using Castle.Core.Internal;
+using ExpectedObjects;
 using System;
 using Xunit;
 
@@ -40,12 +41,31 @@ namespace EadAdmin.Domain.Course
             // Act && Assert
             Assert.Throws<ArgumentException>(() => new Course(string.Empty, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price));
         }
+
+        [Fact]
+        public void CourseShouldntHasAnNullName()
+        {
+            // Arrange
+            var expectedCourse = new
+            {
+                Name = "C#",
+                WorkLoad = (double)55,
+                TargetAudience = TargetAudience.Student,
+                Price = (double)40
+            };
+
+            // Act && Assert
+            Assert.Throws<ArgumentException>(() => new Course(null, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price));
+        }
     }
 
     public class Course
     {
         public Course(string name, double workLoad, TargetAudience targetAudience, double price)
         {
+            if (name.IsNullOrEmpty())
+                throw new ArgumentException();
+
             Name = name;
             WorkLoad = workLoad;
             TargetAudience = targetAudience;
