@@ -24,6 +24,7 @@ namespace EadAdmin.Domain.Course
             expectedCourse.ToExpectedObject().ShouldMatch(course);
         }
     }
+
     public class Course
     {
         public Course(string name, double workLoad, TargetAudience targetAudience, double price)
