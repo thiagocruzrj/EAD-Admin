@@ -4,19 +4,23 @@ namespace EadAdmin.Domain.Course
 {
     public class CourseTest
     {
-        private string name = "C#";
-        private double workLoad = 55.5;
-        private string tagetAudience = "Students";
-        private double price = 40.5;
-
         [Fact]
         public void ShouldCreateCourse()
         {
+            // Arrange
+            string name = "C#";
+            double workLoad = 55.5;
+            string tagetAudience = "Students";
+            double price = 40.5;
+
+            // Act
             var course = new Course(name, workLoad, tagetAudience, price);
-            Assert.Empty(name, course.Name);
-            Assert.Empty(workLoad, course.WorkLoad);
-            Assert.Empty(tagetAudience, course.TagetAudience);
-            Assert.Empty(price, course.Price);
+
+            // Assert
+            Assert.Equal(name, course.Name);
+            Assert.Equal(workLoad, course.WorkLoad);
+            Assert.Equal(tagetAudience, course.TagetAudience);
+            Assert.Equal(price, course.Price);
         }
     }
     public class Course
@@ -25,5 +29,10 @@ namespace EadAdmin.Domain.Course
         {
 
         }
+
+        public string Name { get; internal set; }
+        public double WorkLoad { get; internal set; }
+        public string TagetAudience { get; internal set; }
+        public double Price { get; internal set; }
     }
 }
