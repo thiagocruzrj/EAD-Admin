@@ -1,4 +1,5 @@
 ﻿using ExpectedObjects;
+using System;
 using Xunit;
 
 namespace EadAdmin.Domain.Course
@@ -22,6 +23,22 @@ namespace EadAdmin.Domain.Course
 
             // Assert
             expectedCourse.ToExpectedObject().ShouldMatch(course);
+        }
+
+        [Fact]
+        public void CourseShouldntHasAnEmptyName()
+        {
+            // Arrange
+            var expectedCourse = new
+            {
+                Name = "C#",
+                WorkLoad = (double)55,
+                TargetAudience = TargetAudience.Student,
+                Price = (double)40
+            };
+
+            // Act && Assert
+            Assert.Throws<ArgumentException>(() => new Course(string.Empty, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price));
         }
     }
 
