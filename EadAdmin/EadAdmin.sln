@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EadAdmin.Domain", "test\EadAdmin.Test\EadAdmin.Domain.csproj", "{2673E6D7-2EB0-40EB-AC1E-38E37ED9F576}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EadAdmin.Domain", "test\EadAdmin.Test\EadAdmin.Domain.csproj", "{2673E6D7-2EB0-40EB-AC1E-38E37ED9F576}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EadAdmin.Domain", "src\EadAdmin\EadAdmin.Domain.csproj", "{D8874F45-57B8-40CD-A417-E0E52A8E3365}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EadAdmin.Domain", "src\EadAdmin\EadAdmin.Domain.csproj", "{D8874F45-57B8-40CD-A417-E0E52A8E3365}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{992307E2-0D1D-4C26-8DA8-0778C6F233F7}"
 EndProject
