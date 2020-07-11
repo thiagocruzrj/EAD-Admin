@@ -63,7 +63,10 @@ namespace EadAdmin.Domain.Course
             };
 
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => new Course(expectedCourse.Name, invalidWorkLoad, expectedCourse.TargetAudience, expectedCourse.Price));
+            var message = Assert.Throws<ArgumentException>(() =>
+                new Course(expectedCourse.Name, invalidWorkLoad, expectedCourse.TargetAudience, expectedCourse.Price)).Message;
+
+            Assert.Equal("Work load should be greater than 1", message);
         }
 
         [Theory]
@@ -82,7 +85,10 @@ namespace EadAdmin.Domain.Course
             };
 
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => new Course(expectedCourse.Name, expectedCourse.WorkLoad, expectedCourse.TargetAudience, invalidPrice));
+            var message = Assert.Throws<ArgumentException>(() =>
+                new Course(expectedCourse.Name, expectedCourse.WorkLoad, expectedCourse.TargetAudience, invalidPrice)).Message;
+
+            Assert.Equal("Price should be greater than 1", message);
         }
     }
 
@@ -94,10 +100,10 @@ namespace EadAdmin.Domain.Course
                 throw new ArgumentException("Invalid Name");
 
             if (workLoad < 1)
-                throw new ArgumentException();
+                throw new ArgumentException("Work load should be greater than 1");
 
             if (price < 1)
-                throw new ArgumentException();
+                throw new ArgumentException("Price should be greater than 1");
 
             Name = name;
             WorkLoad = workLoad;
