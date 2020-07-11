@@ -40,8 +40,24 @@ namespace EadAdmin.Domain.Course
                 Price = (double)40
             };
 
-            // Act && Assert
+            // Act & Assert
             Assert.Throws<ArgumentException>(() => new Course(invalidName, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price));
+        }
+
+        [Fact]
+        public void CourseShouldntHasLessThanAnHourOfWorkLoad()
+        {
+            // Arrange
+            var expectedCourse = new
+            {
+                Name = "C#",
+                WorkLoad = 0,
+                TargetAudience = TargetAudience.Student,
+                Price = (double)40
+            };
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => new Course(expectedCourse.Name, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price));
         }
     }
 
@@ -50,6 +66,9 @@ namespace EadAdmin.Domain.Course
         public Course(string name, double workLoad, TargetAudience targetAudience, double price)
         {
             if (name.IsNullOrEmpty())
+                throw new ArgumentException();
+
+            if (workLoad < 1)
                 throw new ArgumentException();
 
             Name = name;
