@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using ExpectedObjects;
+using Xunit;
 
 namespace EadAdmin.Domain.Course
 {
@@ -8,19 +9,19 @@ namespace EadAdmin.Domain.Course
         public void ShouldCreateCourse()
         {
             // Arrange
-            const string name = "C#";
-            const double workLoad = 55.5;
-            const string targetAudience = "Students";
-            const double price = 40.5;
+            var expectedCourse = new
+            {
+                Name = "C#",
+                WorkLoad = (double)55,
+                TargetAudience = "Students",
+                Price = (double)40
+            };
 
             // Act
-            var course = new Course(name, workLoad, targetAudience, price);
+            var course = new Course(expectedCourse.Name, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price);
 
             // Assert
-            Assert.Equal(name, course.Name);
-            Assert.Equal(workLoad, course.WorkLoad);
-            Assert.Equal(targetAudience, course.TargetAudience);
-            Assert.Equal(price, course.Price);
+            expectedCourse.ToExpectedObject().ShouldMatch(course);
         }
     }
     public class Course
