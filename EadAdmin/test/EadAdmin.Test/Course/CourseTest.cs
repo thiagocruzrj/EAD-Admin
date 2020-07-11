@@ -13,7 +13,7 @@ namespace EadAdmin.Domain.Course
             {
                 Name = "C#",
                 WorkLoad = (double)55,
-                TargetAudience = "Students",
+                TargetAudience = TargetAudience.Student,
                 Price = (double)40
             };
 
@@ -26,7 +26,7 @@ namespace EadAdmin.Domain.Course
     }
     public class Course
     {
-        public Course(string name, double workLoad, string targetAudience, double price)
+        public Course(string name, double workLoad, TargetAudience targetAudience, double price)
         {
             Name = name;
             WorkLoad = workLoad;
@@ -36,7 +36,15 @@ namespace EadAdmin.Domain.Course
 
         public string Name { get; private set; }
         public double WorkLoad { get; private set; }
-        public string TargetAudience { get; private set; }
+        public TargetAudience TargetAudience { get; private set; }
         public double Price { get; private set; }
+    }
+
+    public enum TargetAudience
+    {
+        Student,
+        Universitary,
+        Employee,
+        Entrepernur
     }
 }
