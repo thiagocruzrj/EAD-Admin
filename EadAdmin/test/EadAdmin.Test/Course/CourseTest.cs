@@ -44,20 +44,42 @@ namespace EadAdmin.Domain.Course
             Assert.Throws<ArgumentException>(() => new Course(invalidName, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price));
         }
 
-        [Fact]
-        public void CourseShouldntHasLessThanAnHourOfWorkLoad()
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        [InlineData(-2)]
+        public void CourseShouldntHasLessThanAnHourOfWorkLoad(double invalidWorkLoad)
         {
             // Arrange
             var expectedCourse = new
             {
                 Name = "C#",
-                WorkLoad = 0,
+                WorkLoad = invalidWorkLoad,
                 TargetAudience = TargetAudience.Student,
                 Price = (double)40
             };
 
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => new Course(expectedCourse.Name, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price));
+            Assert.Throws<ArgumentException>(() => new Course(expectedCourse.Name, invalidWorkLoad, expectedCourse.TargetAudience, expectedCourse.Price));
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        [InlineData(-2)]
+        public void CourseShouldntHasLessThanOneValueOfPrice(double invalidPrice)
+        {
+            // Arrange
+            var expectedCourse = new
+            {
+                Name = "C#",
+                WorkLoad = (double)55,
+                TargetAudience = TargetAudience.Student,
+                Price = invalidPrice
+            };
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => new Course(expectedCourse.Name, expectedCourse.WorkLoad, expectedCourse.TargetAudience, invalidPrice));
         }
     }
 
@@ -69,6 +91,9 @@ namespace EadAdmin.Domain.Course
                 throw new ArgumentException();
 
             if (workLoad < 1)
+                throw new ArgumentException();
+
+            if (price < 1)
                 throw new ArgumentException();
 
             Name = name;
