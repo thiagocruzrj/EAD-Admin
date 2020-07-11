@@ -41,7 +41,10 @@ namespace EadAdmin.Domain.Course
             };
 
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => new Course(invalidName, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price));
+            var message = Assert.Throws<ArgumentException>(() => 
+                            new Course(invalidName, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price)).Message;
+
+            Assert.Equal("Invalid Name", message);
         }
 
         [Theory]
@@ -88,7 +91,7 @@ namespace EadAdmin.Domain.Course
         public Course(string name, double workLoad, TargetAudience targetAudience, double price)
         {
             if (name.IsNullOrEmpty())
-                throw new ArgumentException();
+                throw new ArgumentException("Invalid Name");
 
             if (workLoad < 1)
                 throw new ArgumentException();
