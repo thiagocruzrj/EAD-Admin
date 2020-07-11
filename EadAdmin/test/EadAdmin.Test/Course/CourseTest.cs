@@ -33,9 +33,9 @@ namespace EadAdmin.Domain.Course
             Price = price;
         }
 
-        public string Name { get; internal set; }
-        public double WorkLoad { get; internal set; }
-        public string TargetAudience { get; internal set; }
-        public double Price { get; internal set; }
+        public string Name { get; private set; }
+        public double WorkLoad { get; private set; }
+        public string TargetAudience { get; private set; }
+        public double Price { get; private set; }
     }
 }
