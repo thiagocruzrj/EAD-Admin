@@ -10,7 +10,7 @@ namespace EadAdmin.Domain._Utils
             if (exception.Message == message)
                 Assert.True(true);
             else
-                Assert.False(true);
+                Assert.False(true, $"Expected message : '{message}'");
         }
     }
 }

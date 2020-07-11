@@ -1,4 +1,5 @@
 ﻿using Castle.Core.Internal;
+using EadAdmin.Domain._Utils;
 using ExpectedObjects;
 using System;
 using Xunit;
@@ -41,10 +42,8 @@ namespace EadAdmin.Domain.Course
             };
 
             // Act & Assert
-            var message = Assert.Throws<ArgumentException>(() => 
-                            new Course(invalidName, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price)).Message;
-
-            Assert.Equal("Invalid Name", message);
+            Assert.Throws<ArgumentException>(() => 
+                        new Course(invalidName, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price)).WithMessage("Invalid Name");
         }
 
         [Theory]
@@ -63,10 +62,8 @@ namespace EadAdmin.Domain.Course
             };
 
             // Act & Assert
-            var message = Assert.Throws<ArgumentException>(() =>
-                new Course(expectedCourse.Name, invalidWorkLoad, expectedCourse.TargetAudience, expectedCourse.Price)).Message;
-
-            Assert.Equal("Work load should be greater than 1", message);
+            Assert.Throws<ArgumentException>(() =>
+                new Course(expectedCourse.Name, invalidWorkLoad, expectedCourse.TargetAudience, expectedCourse.Price)).WithMessage("Work load should be greater than 1");
         }
 
         [Theory]
@@ -85,10 +82,8 @@ namespace EadAdmin.Domain.Course
             };
 
             // Act & Assert
-            var message = Assert.Throws<ArgumentException>(() =>
-                new Course(expectedCourse.Name, expectedCourse.WorkLoad, expectedCourse.TargetAudience, invalidPrice)).Message;
-
-            Assert.Equal("Price should be greater than 1", message);
+            Assert.Throws<ArgumentException>(() =>
+                new Course(expectedCourse.Name, expectedCourse.WorkLoad, expectedCourse.TargetAudience, invalidPrice)).WithMessage("Price should be greater than 1");
         }
     }
 
