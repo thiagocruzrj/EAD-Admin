@@ -26,8 +26,10 @@ namespace EadAdmin.Domain.Course
             expectedCourse.ToExpectedObject().ShouldMatch(course);
         }
 
-        [Fact]
-        public void CourseShouldntHasAnEmptyName()
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void CourseShouldntHasAnEmptyOrNullName(string invalidName)
         {
             // Arrange
             var expectedCourse = new
@@ -39,23 +41,7 @@ namespace EadAdmin.Domain.Course
             };
 
             // Act && Assert
-            Assert.Throws<ArgumentException>(() => new Course(string.Empty, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price));
-        }
-
-        [Fact]
-        public void CourseShouldntHasAnNullName()
-        {
-            // Arrange
-            var expectedCourse = new
-            {
-                Name = "C#",
-                WorkLoad = (double)55,
-                TargetAudience = TargetAudience.Student,
-                Price = (double)40
-            };
-
-            // Act && Assert
-            Assert.Throws<ArgumentException>(() => new Course(null, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price));
+            Assert.Throws<ArgumentException>(() => new Course(invalidName, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price));
         }
     }
 
