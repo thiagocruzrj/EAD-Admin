@@ -8,31 +8,34 @@ namespace EadAdmin.Domain.Course
         public void ShouldCreateCourse()
         {
             // Arrange
-            string name = "C#";
-            double workLoad = 55.5;
-            string tagetAudience = "Students";
-            double price = 40.5;
+            const string name = "C#";
+            const double workLoad = 55.5;
+            const string targetAudience = "Students";
+            const double price = 40.5;
 
             // Act
-            var course = new Course(name, workLoad, tagetAudience, price);
+            var course = new Course(name, workLoad, targetAudience, price);
 
             // Assert
             Assert.Equal(name, course.Name);
             Assert.Equal(workLoad, course.WorkLoad);
-            Assert.Equal(tagetAudience, course.TagetAudience);
+            Assert.Equal(targetAudience, course.TargetAudience);
             Assert.Equal(price, course.Price);
         }
     }
     public class Course
     {
-        public Course(string name, double workLoad, string tagetAudience, double price)
+        public Course(string name, double workLoad, string targetAudience, double price)
         {
-
+            Name = name;
+            WorkLoad = workLoad;
+            TargetAudience = targetAudience;
+            Price = price;
         }
 
         public string Name { get; internal set; }
         public double WorkLoad { get; internal set; }
-        public string TagetAudience { get; internal set; }
+        public string TargetAudience { get; internal set; }
         public double Price { get; internal set; }
     }
 }
