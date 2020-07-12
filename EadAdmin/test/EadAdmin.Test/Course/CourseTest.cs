@@ -45,18 +45,9 @@ namespace EadAdmin.Domain.Course
         [InlineData(null)]
         public void CourseShouldntHasAnEmptyOrNullName(string invalidName)
         {
-            // Arrange
-            var expectedCourse = new
-            {
-                Name = "C#",
-                WorkLoad = (double)55,
-                TargetAudience = TargetAudience.Student,
-                Price = (double)40
-            };
-
-            // Act & Assert
+            // Arrange, Act & Assert
             Assert.Throws<ArgumentException>(() => 
-                        new Course(invalidName, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price)).WithMessage("Invalid Name");
+                        new Course(invalidName, _workLoad, _targetAudience, _price)).WithMessage("Invalid Name");
         }
 
         [Theory]
