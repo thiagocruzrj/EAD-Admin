@@ -67,18 +67,9 @@ namespace EadAdmin.Domain.Course
         [InlineData(-2)]
         public void CourseShouldntHasLessThanOneValueOfPrice(double invalidPrice)
         {
-            // Arrange
-            var expectedCourse = new
-            {
-                Name = "C#",
-                WorkLoad = (double)55,
-                TargetAudience = TargetAudience.Student,
-                Price = invalidPrice
-            };
-
-            // Act & Assert
+            // Arrange, Act & Assert
             Assert.Throws<ArgumentException>(() =>
-                new Course(expectedCourse.Name, expectedCourse.WorkLoad, expectedCourse.TargetAudience, invalidPrice)).WithMessage("Price should be greater than 1");
+                new Course(_name, _workLoad, _targetAudience, invalidPrice)).WithMessage("Price should be greater than 1");
         }
     }
 
