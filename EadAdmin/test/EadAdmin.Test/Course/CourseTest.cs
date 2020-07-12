@@ -56,18 +56,9 @@ namespace EadAdmin.Domain.Course
         [InlineData(-2)]
         public void CourseShouldntHasLessThanAnHourOfWorkLoad(double invalidWorkLoad)
         {
-            // Arrange
-            var expectedCourse = new
-            {
-                Name = "C#",
-                WorkLoad = invalidWorkLoad,
-                TargetAudience = TargetAudience.Student,
-                Price = (double)40
-            };
-
-            // Act & Assert
+            // Arrange, Act & Assert
             Assert.Throws<ArgumentException>(() =>
-                new Course(expectedCourse.Name, invalidWorkLoad, expectedCourse.TargetAudience, expectedCourse.Price)).WithMessage("Work load should be greater than 1");
+                    new Course(_name, invalidWorkLoad, _targetAudience, _price)).WithMessage("Work load should be greater than 1");
         }
 
         [Theory]
