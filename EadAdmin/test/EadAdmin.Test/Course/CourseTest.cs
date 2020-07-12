@@ -8,16 +8,29 @@ namespace EadAdmin.Domain.Course
 {
     public class CourseTest
     {
+        private readonly string _name;
+        private readonly double _workLoad;
+        private readonly TargetAudience _targetAudience;
+        private readonly double _price;
+
+        public CourseTest()
+        {
+            _name = "C#";
+            _workLoad = 80;
+            _targetAudience = TargetAudience.Student;
+            _price = 50;
+        }
+
         [Fact]
         public void ShouldCreateCourse()
         {
             // Arrange
             var expectedCourse = new
             {
-                Name = "C#",
-                WorkLoad = (double)55,
-                TargetAudience = TargetAudience.Student,
-                Price = (double)40
+                Name = _name,
+                WorkLoad = _workLoad,
+                TargetAudience = _targetAudience,
+                Price = _price
             };
 
             // Act
