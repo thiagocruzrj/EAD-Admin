@@ -1,14 +1,14 @@
-﻿using Castle.Core.Internal;
-using EadAdmin.Domain._Utils;
+﻿using EadAdmin.Domain._Utils;
 using ExpectedObjects;
 using System;
 using Xunit;
 using EadAdmin.Domain.Builders;
 using Bogus;
+using EadAdmin.Domain.Courses;
 
 namespace EadAdmin.Domain.CourseTest
 {
-    public class CourseTest
+    public class CourseTest : IDisposable
     {
         private readonly string _name;
         private readonly double _workLoad;
@@ -80,40 +80,10 @@ namespace EadAdmin.Domain.CourseTest
                         BuilderCourse.New().WithPrice(invalidPrice).Build())
                         .WithMessage("Price should be greater than 1");
         }
-    }
 
-    public class Course
-    {
-        public Course(string name, string description, double workLoad, TargetAudience targetAudience, double price)
+        public void Dispose()
         {
-            if (name.IsNullOrEmpty())
-                throw new ArgumentException("Invalid Name");
-
-            if (workLoad < 1)
-                throw new ArgumentException("Work load should be greater than 1");
-
-            if (price < 1)
-                throw new ArgumentException("Price should be greater than 1");
-
-            Name = name;
-            Description = description;
-            WorkLoad = workLoad;
-            TargetAudience = targetAudience;
-            Price = price;
+            throw new NotImplementedException();
         }
-
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public double WorkLoad { get; private set; }
-        public TargetAudience TargetAudience { get; private set; }
-        public double Price { get; private set; }
-    }
-
-    public enum TargetAudience
-    {
-        Student,
-        Universitary,
-        Employee,
-        Entrepernur
     }
 }

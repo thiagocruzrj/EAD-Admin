@@ -1,4 +1,4 @@
-﻿using EadAdmin.Domain.CourseTest;
+﻿using EadAdmin.Domain.Courses;
 
 namespace EadAdmin.Domain.Builders
 {
