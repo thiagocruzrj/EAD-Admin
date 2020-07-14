@@ -1,14 +1,14 @@
-﻿using EadAdmin.Domain._Utils;
+﻿using Bogus;
+using EadAdmin.Domain._Utils;
+using EadAdmin.Domain.Builders;
+using EadAdmin.Domain.Courses;
 using ExpectedObjects;
 using System;
 using Xunit;
-using EadAdmin.Domain.Builders;
-using Bogus;
-using EadAdmin.Domain.Courses;
 
 namespace EadAdmin.Domain.CourseTest
 {
-    public class CourseTest : IDisposable
+    public class CourseTest
     {
         private readonly string _name;
         private readonly double _workLoad;
@@ -79,11 +79,6 @@ namespace EadAdmin.Domain.CourseTest
             Assert.Throws<ArgumentException>(() =>
                         BuilderCourse.New().WithPrice(invalidPrice).Build())
                         .WithMessage("Price should be greater than 1");
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
         }
     }
 }
