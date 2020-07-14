@@ -12,6 +12,7 @@ namespace EadAdmin.Domain.Course
         private readonly double _workLoad;
         private readonly TargetAudience _targetAudience;
         private readonly double _price;
+        private readonly string _description;
 
         public CourseTest()
         {
@@ -19,6 +20,7 @@ namespace EadAdmin.Domain.Course
             _workLoad = 80;
             _targetAudience = TargetAudience.Student;
             _price = 50;
+            _description = "Description sample";
         }
 
         [Fact]
