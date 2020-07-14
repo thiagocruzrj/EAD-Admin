@@ -3,6 +3,7 @@ using EadAdmin.Domain._Utils;
 using ExpectedObjects;
 using System;
 using Xunit;
+using EadAdmin.Domain.Builders;
 
 namespace EadAdmin.Domain.Course
 {
@@ -49,8 +50,9 @@ namespace EadAdmin.Domain.Course
         public void CourseShouldntHasAnEmptyOrNullName(string invalidName)
         {
             // Arrange, Act & Assert
-            Assert.Throws<ArgumentException>(() => 
-                        new Course(invalidName, _description, _workLoad, _targetAudience, _price)).WithMessage("Invalid Name");
+            Assert.Throws<ArgumentException>(() =>
+                         BuilderCourse.New().WithName(invalidName).Build())
+                        .WithMessage("Invalid Name");
         }
 
         [Theory]
@@ -61,7 +63,8 @@ namespace EadAdmin.Domain.Course
         {
             // Arrange, Act & Assert
             Assert.Throws<ArgumentException>(() =>
-                    new Course(_name, _description, invalidWorkLoad, _targetAudience, _price)).WithMessage("Work load should be greater than 1");
+                        BuilderCourse.New().WithWorkload(invalidWorkLoad).Build())
+                        .WithMessage("Work load should be greater than 1");
         }
 
         [Theory]
@@ -72,7 +75,8 @@ namespace EadAdmin.Domain.Course
         {
             // Arrange, Act & Assert
             Assert.Throws<ArgumentException>(() =>
-                new Course(_name, _description, _workLoad, _targetAudience, invalidPrice)).WithMessage("Price should be greater than 1");
+                        BuilderCourse.New().WithPrice(invalidPrice).Build())
+                        .WithMessage("Price should be greater than 1");
         }
     }
 
