@@ -77,7 +77,7 @@ namespace EadAdmin.Domain.Course
 
     public class Course
     {
-        public Course(string name, double workLoad, TargetAudience targetAudience, double price)
+        public Course(string name, double workLoad, TargetAudience targetAudience, double price, string description)
         {
             if (name.IsNullOrEmpty())
                 throw new ArgumentException("Invalid Name");
@@ -92,9 +92,11 @@ namespace EadAdmin.Domain.Course
             WorkLoad = workLoad;
             TargetAudience = targetAudience;
             Price = price;
+            Description = description;
         }
 
         public string Name { get; private set; }
+        public string Description { get; private set; }
         public double WorkLoad { get; private set; }
         public TargetAudience TargetAudience { get; private set; }
         public double Price { get; private set; }
