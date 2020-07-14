@@ -17,10 +17,10 @@ namespace EadAdmin.Domain.Course
         public CourseTest()
         {
             _name = "C#";
+            _description = "Description sample";
             _workLoad = 80;
             _targetAudience = TargetAudience.Student;
             _price = 50;
-            _description = "Description sample";
         }
 
         [Fact]
@@ -30,13 +30,14 @@ namespace EadAdmin.Domain.Course
             var expectedCourse = new
             {
                 Name = _name,
+                Description = _description,
                 WorkLoad = _workLoad,
                 TargetAudience = _targetAudience,
                 Price = _price
             };
 
             // Act
-            var course = new Course(expectedCourse.Name, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price);
+            var course = new Course(expectedCourse.Name, expectedCourse.Description, expectedCourse.WorkLoad, expectedCourse.TargetAudience, expectedCourse.Price);
 
             // Assert
             expectedCourse.ToExpectedObject().ShouldMatch(course);
@@ -49,7 +50,7 @@ namespace EadAdmin.Domain.Course
         {
             // Arrange, Act & Assert
             Assert.Throws<ArgumentException>(() => 
-                        new Course(invalidName, _workLoad, _targetAudience, _price)).WithMessage("Invalid Name");
+                        new Course(invalidName, _description, _workLoad, _targetAudience, _price)).WithMessage("Invalid Name");
         }
 
         [Theory]
@@ -60,7 +61,7 @@ namespace EadAdmin.Domain.Course
         {
             // Arrange, Act & Assert
             Assert.Throws<ArgumentException>(() =>
-                    new Course(_name, invalidWorkLoad, _targetAudience, _price)).WithMessage("Work load should be greater than 1");
+                    new Course(_name, _description, invalidWorkLoad, _targetAudience, _price)).WithMessage("Work load should be greater than 1");
         }
 
         [Theory]
@@ -71,13 +72,13 @@ namespace EadAdmin.Domain.Course
         {
             // Arrange, Act & Assert
             Assert.Throws<ArgumentException>(() =>
-                new Course(_name, _workLoad, _targetAudience, invalidPrice)).WithMessage("Price should be greater than 1");
+                new Course(_name, _description, _workLoad, _targetAudience, invalidPrice)).WithMessage("Price should be greater than 1");
         }
     }
 
     public class Course
     {
-        public Course(string name, double workLoad, TargetAudience targetAudience, double price, string description)
+        public Course(string name, string description, double workLoad, TargetAudience targetAudience, double price)
         {
             if (name.IsNullOrEmpty())
                 throw new ArgumentException("Invalid Name");
@@ -89,10 +90,10 @@ namespace EadAdmin.Domain.Course
                 throw new ArgumentException("Price should be greater than 1");
 
             Name = name;
+            Description = description;
             WorkLoad = workLoad;
             TargetAudience = targetAudience;
             Price = price;
-            Description = description;
         }
 
         public string Name { get; private set; }
