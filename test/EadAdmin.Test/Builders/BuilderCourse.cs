@@ -1,5 +1,4 @@
-﻿using EadAdmin.Domain.Course;
-using app = EadAdmin.Domain.Course;
+﻿using EadAdmin.Domain.CourseTest;
 
 namespace EadAdmin.Domain.Builders
 {
@@ -42,13 +41,13 @@ namespace EadAdmin.Domain.Builders
 
         public BuilderCourse WithTargetAudience(TargetAudience targetAudience)
         {
-            _targetAudience = TargetAudience.Student;
+            _targetAudience = targetAudience;
             return this;
         }
 
-        public app.Course Build()
+        public Course Build()
         {
-            return new app.Course(_name, _description, _workLoad, _targetAudience, _price);
+            return new Course(_name, _description, _workLoad, _targetAudience, _price);
         }
     }
 }

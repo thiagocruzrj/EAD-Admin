@@ -5,7 +5,7 @@ using System;
 using Xunit;
 using EadAdmin.Domain.Builders;
 
-namespace EadAdmin.Domain.Course
+namespace EadAdmin.Domain.CourseTest
 {
     public class CourseTest
     {
