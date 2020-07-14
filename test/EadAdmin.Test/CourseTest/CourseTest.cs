@@ -4,6 +4,7 @@ using ExpectedObjects;
 using System;
 using Xunit;
 using EadAdmin.Domain.Builders;
+using Bogus;
 
 namespace EadAdmin.Domain.CourseTest
 {
@@ -17,11 +18,12 @@ namespace EadAdmin.Domain.CourseTest
 
         public CourseTest()
         {
-            _name = "C#";
-            _description = "Description sample";
-            _workLoad = 80;
+            var faker = new Faker();
+            _name = faker.Random.Word();
+            _description = faker.Lorem.Paragraph();
+            _workLoad = faker.Random.Double(50, 200);
             _targetAudience = TargetAudience.Student;
-            _price = 50;
+            _price = faker.Random.Double(21, 1000);
         }
 
         [Fact]
