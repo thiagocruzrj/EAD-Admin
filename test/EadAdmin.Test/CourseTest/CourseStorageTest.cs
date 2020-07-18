@@ -1,6 +1,8 @@
 ﻿using Bogus;
 using EadAdmin.Domain.Courses;
+using EadAdmin.DomainTest._Utils;
 using Moq;
+using System;
 using Xunit;
 
 namespace EadAdmin.DomainTest.CourseTest
@@ -22,7 +24,7 @@ namespace EadAdmin.DomainTest.CourseTest
                 Name = fake.Random.Word(),
                 Description = fake.Lorem.Paragraph(),
                 WorkLoad = fake.Random.Double(10, 100),
-                TargetAudienceId = 1,
+                TargetAudience = "Student",
                 Price = fake.Random.Double(2, 100)
             };
         }
@@ -33,6 +35,16 @@ namespace EadAdmin.DomainTest.CourseTest
             _storageCourse.Store(_courseDto);
 
             _repositoryCourseMock.Verify(r => r.AddCourse(It.IsAny<Course>()));
+        }
+
+        [Fact]
+        public void ShouldntSetAnInvalidTargetAudience()
+        {
+            var targetAudienceInvalid = "Medic";
+            _courseDto.TargetAudience = targetAudienceInvalid;
+
+            Assert.Throws<ArgumentException>(() => _storageCourse.Store(_courseDto))
+                .WithMessage("Target Audience invalid");
         }
     }
 
@@ -63,7 +75,7 @@ namespace EadAdmin.DomainTest.CourseTest
         public string Name { get; set; }
         public string Description { get; set; }
         public double WorkLoad { get; set; }
-        public int TargetAudienceId { get; set; }
+        public string TargetAudience { get; set; }
         public double Price { get; set; }
     }
 }
