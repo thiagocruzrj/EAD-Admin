@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using EadAdmin.Domain.Courses;
+using Moq;
 using System;
 using Xunit;
 
@@ -21,6 +22,10 @@ namespace EadAdmin.DomainTest.CourseTest
             var courseRepositoryMock = new Mock<IStorageRepository>();
 
             var courseStorage = new StorageCourse(courseRepositoryMock.Object);
+
+            courseStorage.Store(courseDto);
+
+            courseRepositoryMock.Verify(r => r.Store(It.IsAny<Course>()));
         }
     }
 
@@ -39,7 +44,7 @@ namespace EadAdmin.DomainTest.CourseTest
 
     public interface IStorageRepository
     {
-        void Store(CourseDto courseDto);
+        void Store(Course course);
     }
 
     public class CourseDto
