@@ -59,7 +59,12 @@ namespace EadAdmin.DomainTest.CourseTest
 
         public void Store(CourseDto course)
         {
-            var courseToStorage = new Course(course.Name, course.Description, course.WorkLoad, TargetAudience.Student, course.Price);
+            Enum.TryParse(typeof(TargetAudience), course.TargetAudience, out var targetAudience);
+
+            if (targetAudience == null)
+                throw new ArgumentException("Target Audience invalid");
+
+            var courseToStorage = new Course(course.Name, course.Description, course.WorkLoad, (TargetAudience)targetAudience, course.Price);
 
             _courseRepository.AddCourse(courseToStorage);
         }
