@@ -5,6 +5,12 @@ namespace EadAdmin.DomainTest.CourseTest
 {
     public class CourseStorageTest
     {
+        public readonly IStorageCourse _storageCourse;
+        public CourseStorageTest(IStorageCourse storageCourse)
+        {
+            _storageCourse = storageCourse;
+        }
+
         [Fact]
         public void ShouldAddCourse()
         {
@@ -17,17 +23,12 @@ namespace EadAdmin.DomainTest.CourseTest
                 Price = 30.5
             };
 
-            var storageCourse = new StorageCourse();
-            storageCourse.Store(courseDto);
+            _storageCourse.Store(courseDto);
         }
     }
 
-    class StorageCourse
+    public class StorageCourse
     {
-        public StorageCourse()
-        {
-        }
-
         public void Store(CourseDto courseDto)
         {
             throw new NotImplementedException();
