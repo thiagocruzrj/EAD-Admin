@@ -1,16 +1,15 @@
 ﻿using Bogus;
 using EadAdmin.Domain.Courses;
 using Moq;
-using System;
 using Xunit;
 
 namespace EadAdmin.DomainTest.CourseTest
 {
     public class CourseStorageTest
     {
-        private CourseDto _courseDto;
-        private Mock<ICourseRepository> _repositoryCourseMock;
-        private StorageCourse _storageCourse;
+        private readonly CourseDto _courseDto;
+        private readonly Mock<ICourseRepository> _repositoryCourseMock;
+        private readonly StorageCourse _storageCourse;
 
         public CourseStorageTest()
         {
