@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace EadAdmin.Domain._Utils
+namespace EadAdmin.DomainTest._Utils
 {
     public static class AssertExtensions
     {

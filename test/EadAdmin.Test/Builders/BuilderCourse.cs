@@ -1,6 +1,6 @@
 ﻿using EadAdmin.Domain.Courses;
 
-namespace EadAdmin.Domain.Builders
+namespace EadAdmin.DomainTest.Builders
 {
     public class BuilderCourse
     {

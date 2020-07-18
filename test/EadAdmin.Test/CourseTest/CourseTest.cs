@@ -1,12 +1,12 @@
 ﻿using Bogus;
-using EadAdmin.Domain._Utils;
-using EadAdmin.Domain.Builders;
 using EadAdmin.Domain.Courses;
+using EadAdmin.DomainTest._Utils;
+using EadAdmin.DomainTest.Builders;
 using ExpectedObjects;
 using System;
 using Xunit;
 
-namespace EadAdmin.Domain.CourseTest
+namespace EadAdmin.DomainTest.CourseTest
 {
     public class CourseTest
     {
