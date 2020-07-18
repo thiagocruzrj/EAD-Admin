@@ -21,9 +21,9 @@ namespace EadAdmin.DomainTest.CourseTest
             {
                 Name = fake.Random.Word(),
                 Description = fake.Lorem.Paragraph(),
-                WorkLoad = 50.1,
+                WorkLoad = fake.Random.Double(10, 100),
                 TargetAudienceId = 1,
-                Price = 30.2
+                Price = fake.Random.Double(2, 100)
             };
         }
 
