@@ -35,7 +35,6 @@ namespace EadAdmin.DomainTest.CourseTest
 
         public StorageCourse(ICourseRepository courseRepository)
         {
-            throw new NotImplementedException();
             _courseRepository = courseRepository;
         }
 
