@@ -22,6 +22,11 @@ namespace EadAdmin.DomainTest.CourseTest
         }
     }
 
+    public interface IStorageCourse
+    {
+        void Store(CourseDto courseDto);
+    }
+
     public class CourseDto
     {
         public string Name { get; set; }
