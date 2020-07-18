@@ -19,32 +19,37 @@ namespace EadAdmin.DomainTest.CourseTest
                 Price = 30.5
             };
 
-            var courseRepositoryMock = new Mock<IStorageRepository>();
+            var courseRepositoryMock = new Mock<ICourseRepository>();
 
             var courseStorage = new StorageCourse(courseRepositoryMock.Object);
 
             courseStorage.Store(courseDto);
 
-            courseRepositoryMock.Verify(r => r.Store(It.IsAny<Course>()));
+            courseRepositoryMock.Verify(r => r.AddCourse(It.IsAny<Course>()));
         }
     }
 
-    public class StorageCourse
+    public class StorageCourse 
     {
-        public StorageCourse(IStorageRepository @object)
+        private readonly ICourseRepository _courseRepository;
+
+        public StorageCourse(ICourseRepository courseRepository)
         {
             throw new NotImplementedException();
+            _courseRepository = courseRepository;
         }
 
-        public void Store(CourseDto courseDto)
+        public void Store(CourseDto course)
         {
-            throw new NotImplementedException();
+            var courseToStorage = new Course(course.Name, course.Description, course.WorkLoad, TargetAudience.Student, course.Price);
+
+            _courseRepository.AddCourse(courseToStorage);
         }
     }
 
-    public interface IStorageRepository
+    public interface ICourseRepository
     {
-        void Store(Course course);
+        void AddCourse(Course course);
     }
 
     public class CourseDto
