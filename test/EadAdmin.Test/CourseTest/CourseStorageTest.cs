@@ -22,6 +22,18 @@ namespace EadAdmin.DomainTest.CourseTest
         }
     }
 
+    class StorageCourse
+    {
+        public StorageCourse()
+        {
+        }
+
+        public void Store(CourseDto courseDto)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public interface IStorageCourse
     {
         void Store(CourseDto courseDto);
