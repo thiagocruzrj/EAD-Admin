@@ -1,4 +1,5 @@
-﻿using EadAdmin.Domain.Courses;
+﻿using Bogus;
+using EadAdmin.Domain.Courses;
 using Moq;
 using System;
 using Xunit;
@@ -7,25 +8,32 @@ namespace EadAdmin.DomainTest.CourseTest
 {
     public class CourseStorageTest
     {
+        private CourseDto _courseDto;
+        private Mock<ICourseRepository> _repositoryCourseMock;
+        private StorageCourse _storageCourse;
+
+        public CourseStorageTest()
+        {
+            _repositoryCourseMock = new Mock<ICourseRepository>();
+            _storageCourse = new StorageCourse(_repositoryCourseMock.Object);
+            var fake = new Faker();
+
+            _courseDto = new CourseDto
+            {
+                Name = fake.Random.Word(),
+                Description = fake.Lorem.Paragraph(),
+                WorkLoad = 50.1,
+                TargetAudienceId = 1,
+                Price = 30.2
+            };
+        }
+
         [Fact]
         public void ShouldAddCourse()
         {
-            var courseDto = new CourseDto
-            {
-                Name = "C#",
-                Description = "A CSharp´course",
-                WorkLoad = 50.5,
-                TargetAudienceId = 1,
-                Price = 30.5
-            };
+            _storageCourse.Store(_courseDto);
 
-            var courseRepositoryMock = new Mock<ICourseRepository>();
-
-            var courseStorage = new StorageCourse(courseRepositoryMock.Object);
-
-            courseStorage.Store(courseDto);
-
-            courseRepositoryMock.Verify(r => r.AddCourse(It.IsAny<Course>()));
+            _repositoryCourseMock.Verify(r => r.AddCourse(It.IsAny<Course>()));
         }
     }
 
