@@ -1,16 +1,11 @@
-﻿using System;
+﻿using Moq;
+using System;
 using Xunit;
 
 namespace EadAdmin.DomainTest.CourseTest
 {
     public class CourseStorageTest
     {
-        public readonly IStorageCourse _storageCourse;
-        public CourseStorageTest(IStorageCourse storageCourse)
-        {
-            _storageCourse = storageCourse;
-        }
-
         [Fact]
         public void ShouldAddCourse()
         {
@@ -23,19 +18,26 @@ namespace EadAdmin.DomainTest.CourseTest
                 Price = 30.5
             };
 
-            _storageCourse.Store(courseDto);
+            var courseRepositoryMock = new Mock<IStorageRepository>();
+
+            var courseStorage = new StorageCourse(courseRepositoryMock.Object);
         }
     }
 
     public class StorageCourse
     {
+        public StorageCourse(IStorageRepository @object)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Store(CourseDto courseDto)
         {
             throw new NotImplementedException();
         }
     }
 
-    public interface IStorageCourse
+    public interface IStorageRepository
     {
         void Store(CourseDto courseDto);
     }
