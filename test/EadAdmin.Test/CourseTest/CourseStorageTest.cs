@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using EadAdmin.Domain.Courses;
 using EadAdmin.DomainTest._Utils;
+using EadAdmin.DomainTest.Builders;
 using Moq;
 using System;
 using Xunit;
@@ -50,7 +51,11 @@ namespace EadAdmin.DomainTest.CourseTest
         [Fact]
         public void ShouldntAddACourseWithSameName()
         {
-            var courseNameSaved = _courseDto.
+            var savedCourse = BuilderCourse.New().WithName(_courseDto.Name).Build();
+            _repositoryCourseMock.Setup(r => r.AddCourseByName(_courseDto.Name)).Returns(savedCourse);
+
+            Assert.Throws<ArgumentException>(() => _storageCourse.Store(_courseDto))
+                .WithMessage("Course name unavailable");
         }
     }
 
@@ -65,6 +70,11 @@ namespace EadAdmin.DomainTest.CourseTest
 
         public void Store(CourseDto course)
         {
+            var savadCourse = _courseRepository.AddCourseByName(course.Name);
+
+            if (savadCourse != null)
+                throw new ArgumentException("Course name unavailable");
+
             Enum.TryParse(typeof(TargetAudience), course.TargetAudience, out var targetAudience);
 
             if (targetAudience == null)
