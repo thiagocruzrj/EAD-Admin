@@ -18,9 +18,7 @@ namespace EadAdmin.Domain.Courses
             if (savadCourse != null)
                 throw new ArgumentException("Course name unavailable");
 
-            Enum.TryParse(typeof(TargetAudience), course.TargetAudience, out var targetAudience);
-
-            if (targetAudience == null)
+            if (!Enum.TryParse<TargetAudience>(course.TargetAudience, out var targetAudience))
                 throw new ArgumentException("Target Audience invalid");
 
             var courseToStorage = new Course(course.Name, course.Description, course.WorkLoad, (TargetAudience)targetAudience, course.Price);
