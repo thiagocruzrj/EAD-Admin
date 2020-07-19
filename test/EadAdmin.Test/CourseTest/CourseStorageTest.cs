@@ -46,6 +46,12 @@ namespace EadAdmin.DomainTest.CourseTest
             Assert.Throws<ArgumentException>(() => _storageCourse.Store(_courseDto))
                 .WithMessage("Target Audience invalid");
         }
+
+        [Fact]
+        public void ShouldntAddACourseWithSameName()
+        {
+            var courseNameSaved = _courseDto.
+        }
     }
 
     public class StorageCourse 
@@ -73,6 +79,7 @@ namespace EadAdmin.DomainTest.CourseTest
     public interface ICourseRepository
     {
         void AddCourse(Course course);
+        Course AddCourseByName(string courseName);
     }
 
     public class CourseDto
